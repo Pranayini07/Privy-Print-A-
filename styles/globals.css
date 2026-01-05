@@ -1,0 +1,171 @@
+:root {
+    /* =========================================
+     THEME: Deep Void & Glass (Premium Refinement)
+     ========================================= */
+
+    /* Backgrounds */
+    --bg-dark: #030305;
+    --bg-gradient:
+        radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.08) 0%, transparent 25%);
+
+    /* Glass Surfaces (Layered) */
+    --glass-bg: rgba(255, 255, 255, 0.02);
+    --glass-bg-hover: rgba(255, 255, 255, 0.04);
+    --glass-border: rgba(255, 255, 255, 0.06);
+    --glass-border-hover: rgba(255, 255, 255, 0.12);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    --backdrop-blur: 20px;
+
+    /* Typography */
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+
+    /* Brand Accents */
+    --accent-primary: #6366f1;
+    /* Indigo-500 */
+    --accent-glow: rgba(99, 102, 241, 0.15);
+
+    /* Gradients */
+    --brand-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+    --brand-gradient-hover: linear-gradient(135deg, #4f46e5 0%, #9333ea 50%, #db2777 100%);
+
+    /* Status */
+    --success: #10b981;
+    --error: #ef4444;
+    --warning: #f59e0b;
+
+    /* Dimensions */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --header-height: 80px;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body {
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--bg-dark);
+    background-image: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-main);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+button {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* =========================================
+   VISUAL UTILITIES
+   ========================================= */
+
+/* 1. Background Noise / Grain */
+.bg-noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* 2. Glass Panel (Base) */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--backdrop-blur));
+    -webkit-backdrop-filter: blur(var(--backdrop-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+}
+
+.glass-panel:hover {
+    background: var(--glass-bg-hover);
+    border-color: var(--glass-border-hover);
+}
+
+/* 3. Ambient Glow (Container) */
+.glow-container {
+    position: relative;
+}
+
+.glow-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+    z-index: -1;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(40px);
+    opacity: 0.6;
+    transition: opacity 0.5s ease;
+}
+
+.glow-container:hover::before {
+    opacity: 0.8;
+}
+
+/* 4. Text Gradients */
+.text-gradient {
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
+/* 5. Separators */
+.separator-soft {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+    margin: 2rem 0;
+}
+
+/* 6. Animations */
+@keyframes fadeScaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
